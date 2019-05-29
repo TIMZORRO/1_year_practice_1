@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace РРРРРРРРРРРРРРРРРРРРРРРРРр
+namespace Задача_3
 {
     class Program
     {
