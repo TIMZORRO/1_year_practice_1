@@ -1,0 +1,14 @@
+C:\Users\tim-p\source\repos\РРРРРРРРРРРРРРРРРРРРРРРРРр\РРРРРРРРРРРРРРРРРРРРРРРРРр\bin\Debug\РРРРРРРРРРРРРРРРРРРРРРРРРр.exe.config
+C:\Users\tim-p\source\repos\РРРРРРРРРРРРРРРРРРРРРРРРРр\РРРРРРРРРРРРРРРРРРРРРРРРРр\bin\Debug\РРРРРРРРРРРРРРРРРРРРРРРРРр.exe
+C:\Users\tim-p\source\repos\РРРРРРРРРРРРРРРРРРРРРРРРРр\РРРРРРРРРРРРРРРРРРРРРРРРРр\bin\Debug\РРРРРРРРРРРРРРРРРРРРРРРРРр.pdb
+C:\Users\tim-p\source\repos\РРРРРРРРРРРРРРРРРРРРРРРРРр\РРРРРРРРРРРРРРРРРРРРРРРРРр\obj\Debug\Задача 1.csprojAssemblyReference.cache
+C:\Users\tim-p\source\repos\РРРРРРРРРРРРРРРРРРРРРРРРРр\РРРРРРРРРРРРРРРРРРРРРРРРРр\obj\Debug\Задача 1.csproj.CoreCompileInputs.cache
+C:\Users\tim-p\source\repos\РРРРРРРРРРРРРРРРРРРРРРРРРр\РРРРРРРРРРРРРРРРРРРРРРРРРр\obj\Debug\РРРРРРРРРРРРРРРРРРРРРРРРРр.exe
+C:\Users\tim-p\source\repos\РРРРРРРРРРРРРРРРРРРРРРРРРр\РРРРРРРРРРРРРРРРРРРРРРРРРр\obj\Debug\РРРРРРРРРРРРРРРРРРРРРРРРРр.pdb
+C:\Users\tim-p\source\repos\Практика\Задача 1\bin\Debug\РРРРРРРРРРРРРРРРРРРРРРРРРр.exe.config
+C:\Users\tim-p\source\repos\Практика\Задача 1\bin\Debug\РРРРРРРРРРРРРРРРРРРРРРРРРр.exe
+C:\Users\tim-p\source\repos\Практика\Задача 1\bin\Debug\РРРРРРРРРРРРРРРРРРРРРРРРРр.pdb
+C:\Users\tim-p\source\repos\Практика\Задача 1\obj\Debug\Задача 1.csprojAssemblyReference.cache
+C:\Users\tim-p\source\repos\Практика\Задача 1\obj\Debug\Задача 1.csproj.CoreCompileInputs.cache
+C:\Users\tim-p\source\repos\Практика\Задача 1\obj\Debug\РРРРРРРРРРРРРРРРРРРРРРРРРр.exe
+C:\Users\tim-p\source\repos\Практика\Задача 1\obj\Debug\РРРРРРРРРРРРРРРРРРРРРРРРРр.pdb
