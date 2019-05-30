@@ -8,7 +8,7 @@ namespace Задача_3
 {
     class Program
     {
-        public static double Function(double x)
+        public static double Function(double x) //функция для графика
         {
             if (x < 0) return Math.Abs(x + 1);
             else return Math.Abs(x - 1);

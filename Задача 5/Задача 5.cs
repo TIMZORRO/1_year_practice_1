@@ -33,7 +33,7 @@ namespace Задача_5
 
                 switch (Console.ReadLine())
                 {
-                    case "1":
+                    case "1": // ввод из файла
                         using (FileStream sf = new FileStream(input_f, FileMode.OpenOrCreate)) { }
                         using (StreamReader reader = new StreamReader(input_f))
                         {
@@ -52,7 +52,7 @@ namespace Задача_5
                         }
                         break;
 
-                    case "2":
+                    case "2": // ручной ввод
                         for (int i = 0; i < arr.GetLength(0); i++)
                         {
                             for (int j = 0; j < arr.GetLength(1); j++)
@@ -84,7 +84,7 @@ namespace Задача_5
                 Console.WriteLine();
             }
 
-            for (int i = 0; i < arr.GetLength(0); i++)
+            for (int i = 0; i < arr.GetLength(0); i++) // создание массива раскрученной спирали
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
