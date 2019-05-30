@@ -10,6 +10,7 @@ namespace Задача_4
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
