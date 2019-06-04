@@ -8,29 +8,97 @@ namespace Задача_7
 {
     class Program
     {
-        //рекурсия вида для каждого если 1 то присваиваем если больше то вызываем рекурсию
-        public static string[] Code(int[] alf, int glub, int max_glub)
+        // реальная функция, создающая кодирующий алфавит на основе длин слов
+        public static string[] Code(int[] alf, int glub, string end)
         {
-            if (glub > max_glub) return new string[alf.Length];
-            else
+            if (glub == 0) return new string[0];
+            string[] ans = new string[alf.Length];
+            int count = 0, count_noone = 0;
+            for (int i = 0; i < alf.Length; i++)
+                if (alf[i] == 1 && count < 2) { ans[i] = count % 2 + end; count++; }
+                else if (count >= 2) throw new Exception("Ошибка глубины");
+                else if (alf[i] > 1) count_noone++;
+            if (count == 2 && count_noone > 0) throw new Exception("Ошибка глубины");
+            if (count == 1)
             {
-                string[] ans = new string[alf.Length];
-                int count = 0, count_noone = 0;
+                int[] help_int = new int[alf.Length - count];
+                int find = 0;
                 for (int i = 0; i < alf.Length; i++)
-                    if (alf[i] == 1 && count <= Math.Pow(2, glub))
-                    {
-                        ans[i] += count % 2;
-                        count++;
-                    }
-                    else if (count > Math.Pow(2, glub)) throw new Exception("Слишком много веток на данной глубине");
-                    else if (alf[i] > 1) count_noone++;
-                if (count == Math.Pow(2, glub) && count_noone == 0) throw new Exception("Слишком много веток на данной глубине!!!");
-                int[] help_alf = new int[alf.Length];
-                for (int i = 0; i < help_alf.Length; i++) help_alf[i] = alf[i] - 1;
-                string[] dop = Code(help_alf, glub + 1, max_glub);
-                for (int i = 0; i < ans.Length; i++) if (alf[i]>1) ans[i] += i % 2 + dop[i];
-                return ans;
+                    if (alf[i] == 1) find++;
+                    else help_int[i - find] = alf[i]-1;
+                string[] help_str = Code(help_int, glub - 1, count % 2 + end);
+                find = 0;
+                for (int i = 0; i < ans.Length; i++)
+                    if (alf[i] == 1) find++;
+                    else ans[i] = help_str[i - find];
             }
+            if (count == 0)
+            {
+                int[] alf2 = new int[alf.Length / 2];
+                int[] alf1 = new int[alf.Length - alf2.Length];
+                int[] pos1 = new int[alf1.Length];
+                int[] pos2 = new int[alf2.Length];
+                int num1 = 0;
+                int num2 = 0;
+                bool time = true;
+                for (int i = 2; i <= glub; i++)
+                    for (int j = 0; j < alf.Length; j++)
+                        if (alf[j] == i)
+                        {
+                            if (time)
+                            {
+                                alf1[num1] = i-1;
+                                pos1[num1++] = j;
+                            }
+                            else
+                            {
+                                alf2[num2] = i-1;
+                                pos2[num2++] = j;
+                            }
+                            time = !time;
+                        }
+                string[] str1 = Code(alf1, glub - 1, "0" + end);
+                string[] str2 = Code(alf2, glub - 1, "1" + end);
+                for (int i = 0; i < pos1.Length; i++) ans[pos1[i]] = str1[i];
+                for (int i = 0; i < pos2.Length; i++) ans[pos2[i]] = str2[i];
+            }
+            return ans;
+        }
+        // функция для пользования. вызывает предыдущую функцию
+        public static string[] ToCode(int[] alf)
+        {
+            return Code(alf, alf.Max(), null);
+        }
+        // сортирует полученный кодирующий алфавит в лексикографическом порядке
+        public static string[] LexGraphSort(string[] strs)
+        {
+            int num = 1, j = num;
+            while (num<strs.Length)
+            {
+                for (int i = j - 1; i >= 0; i--)
+                {
+                    int count = 0;
+                    for (int k = 0; k < Math.Min(strs[i].Length, strs[j].Length); k++) 
+                    {
+                        if (strs[i][k] < strs[j][k]) { count = 1; break; }
+                        else if (strs[i][k] > strs[j][k]) { count = -1; break; }
+                    }
+                    string help_str = strs[i];
+                    if ((count == 0 && strs[i].Length > strs[j].Length) || count == -1) 
+                    {
+                        strs[i] = strs[j];
+                        strs[j] = help_str;
+                        if (i != 0) j = i;
+                        else j = ++num;
+                    }
+                    else if ((count == 0 && strs[i].Length < strs[j].Length) || count == 1) 
+                    {
+                        j = ++num;
+                        break;
+                    }
+                }
+            }
+            return strs;
         }
         public static int EnterInt()
         {
@@ -57,10 +125,11 @@ namespace Задача_7
 
             try
             {
-                string[] ans = Code(alf, 1, alf.Max());
+                string[] ans = LexGraphSort(ToCode(alf));
+                Console.WriteLine("\nКодирующий алфавит в лексикографическом порядке:");
                 foreach (string str in ans) Console.WriteLine(str);
             }
-            catch (Exception c) { Console.WriteLine(c.ToString()); }
+            catch (Exception c) { Console.WriteLine("Из данного набора длин слов невозможно получить кодирующий алфавит"); }
             Console.ReadKey();
 
         }
