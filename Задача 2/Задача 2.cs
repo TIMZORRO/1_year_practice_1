@@ -13,18 +13,18 @@ namespace Задача_2
         {
             List<string> arr = new List<string>();
             string input_f = "input.txt", output_f = "output.txt";
-            //using (FileStream sf = new FileStream(input_f, FileMode.OpenOrCreate)) { }
+            using (FileStream sf = new FileStream(input_f, FileMode.OpenOrCreate)) { }
 
             using (StreamReader reader = new StreamReader(input_f))
             {
-                //Console.WriteLine("INPUT.TXT\n");
+                Console.WriteLine("INPUT.TXT\n");
                 string str = reader.ReadLine();
-                //Console.WriteLine(str);
+                Console.WriteLine(str);
                 int count = Convert.ToInt32(str);
                 for (int i = 0; i < count; i++)
                 {
                     str = reader.ReadLine();
-                    //Console.WriteLine(str);
+                    Console.WriteLine(str);
                     bool not_find = true;
 
                     foreach (string arr_str in arr)
@@ -50,13 +50,13 @@ namespace Задача_2
                 }
             }
 
-            //using (FileStream sf = new FileStream(output_f, FileMode.OpenOrCreate)) { }
+            using (FileStream sf = new FileStream(output_f, FileMode.OpenOrCreate)) { }
             using (StreamWriter writer = new StreamWriter(output_f))
             {
                 writer.Write(arr.Count);
             }
-            //Console.WriteLine("\nOUTPUT.TXT\n\n" + arr.Count);
-            //Console.ReadKey();
+            Console.WriteLine("\nOUTPUT.TXT\n\n" + arr.Count);
+            Console.ReadKey();
         }
     }
 }
