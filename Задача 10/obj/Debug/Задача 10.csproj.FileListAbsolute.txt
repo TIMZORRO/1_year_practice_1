@@ -4,3 +4,4 @@ C:\Users\tim-p\source\repos\Практика\Задача 10\bin\Debug\Зада�
 C:\Users\tim-p\source\repos\Практика\Задача 10\bin\Debug\Задача 10.pdb
 C:\Users\tim-p\source\repos\Практика\Задача 10\obj\Debug\Задача 10.exe
 C:\Users\tim-p\source\repos\Практика\Задача 10\obj\Debug\Задача 10.pdb
+C:\Users\tim-p\source\repos\Практика\Задача 10\obj\Debug\Задача 10.csprojAssemblyReference.cache
