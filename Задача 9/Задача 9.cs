@@ -27,7 +27,7 @@ namespace Задача_9
             for (int i=0; i < N; i++) 
                 list.Add(new CircularListEntry(i + 1));
             Console.WriteLine("Полученный список:\n" + list.ToString() + "\n\nУдаление члена из списка\n\nПолученный список: ");
-            list.Remove(new CircularListEntry(4));
+            list.Remove(new CircularListEntry(list.Count));
             list.Show();
             Console.WriteLine("Поиск 6 элемента: ");
             if (list.KeyFind(5) == null) Console.WriteLine("Такого элемента нет в списке");

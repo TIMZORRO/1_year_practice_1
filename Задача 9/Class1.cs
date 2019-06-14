@@ -72,7 +72,7 @@ namespace Задача_9
                 help.Next = new CircularListEntry();
                 help = help.Next;
             }
-            help.Next = First;
+            help = First;
 
         }
         public CircularListEntry KeyFind(int key)
