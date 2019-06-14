@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Задача_2
 {
@@ -21,32 +18,33 @@ namespace Задача_2
                 string str = reader.ReadLine();
                 Console.WriteLine(str);
                 int count = Convert.ToInt32(str);
-                for (int i = 0; i < count; i++)
+                for (int k = 0; k < count; k++)
                 {
-                    str = reader.ReadLine();
+                    str = reader.ReadLine().Trim().ToLower().Split(new char[] { ' ' })[0];
                     Console.WriteLine(str);
-                    bool not_find = true;
+                    bool no_found = true;
 
-                    foreach (string arr_str in arr)
+                    for (int i = 0; i < arr.Count; i++)
                     {
-                        bool find = true;
+                        bool found = false;
 
-                        if (arr_str.Length > str.Length) { if (!arr_str.Contains(str)) find = false; }
-                        else { if (!str.Contains(arr_str)) find = false; }
+                        if (arr[i] == str) found = true;
+                        else if (arr[i].Length > str.Length && arr[i].Remove(str.Length) == str) found = true;
+                        else if (arr[i].Length < str.Length && str.Remove(arr[i].Length) == arr[i]) found = true;
 
-                        if (find)
+
+                        if (found)
                         {
-                            not_find = false;
-                            if (str.Length > arr_str.Length)
+                            no_found = false;
+                            if (str.Length > arr[i].Length)
                             {
-                                arr.Remove(arr_str);
-                                arr.Add(str);
+                                arr[i] = str;
                             }
                             break;
                         }
                     }
 
-                    if (not_find) arr.Add(str);
+                    if (no_found) arr.Add(str);
                 }
             }
 
