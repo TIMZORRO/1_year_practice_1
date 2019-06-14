@@ -14,10 +14,26 @@ namespace Задача_2
 
             using (StreamReader reader = new StreamReader(input_f))
             {
+                if (reader.Peek() == -1)
+                {
+                    Console.WriteLine("Файл пуст");
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                }
                 Console.WriteLine("INPUT.TXT\n");
-                string str = reader.ReadLine();
+                string str = "";
+                int count = 0;
+                try
+                {
+                    count = Convert.ToInt32(reader.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("\n\nФайл заполнен неверно. В первой строке должно быть количество записей о предметах");
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                }
                 Console.WriteLine(str);
-                int count = Convert.ToInt32(str);
                 for (int k = 0; k < count; k++)
                 {
                     str = reader.ReadLine().Trim().ToLower().Split(new char[] { ' ' })[0];
@@ -26,20 +42,15 @@ namespace Задача_2
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        bool found = false;
-
-                        if (arr[i] == str) found = true;
-                        else if (arr[i].Length > str.Length && arr[i].Remove(str.Length) == str) found = true;
-                        else if (arr[i].Length < str.Length && str.Remove(arr[i].Length) == arr[i]) found = true;
-
-
-                        if (found)
+                        if (arr[i] == str || arr[i].Length > str.Length && arr[i].Remove(str.Length) == str)
                         {
                             no_found = false;
-                            if (str.Length > arr[i].Length)
-                            {
-                                arr[i] = str;
-                            }
+                            break;
+                        }
+                        else if (arr[i].Length < str.Length && str.Remove(arr[i].Length) == arr[i])
+                        {
+                            no_found = false;
+                            arr[i] = str;
                             break;
                         }
                     }
