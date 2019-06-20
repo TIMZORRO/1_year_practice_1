@@ -9,16 +9,20 @@ namespace Задача_7
     class Program
     {
         // реальная функция, создающая кодирующий алфавит на основе длин слов
-        public static string[] Code(int[] alf, int glub, string end)
+        public static string[] Code(int[] alf, string end)
         {
-            if (glub == 0) return new string[0];
+            if (alf.Length == 0) return new string[0];
+
             string[] ans = new string[alf.Length];
             int count = 0, count_noone = 0;
+
             for (int i = 0; i < alf.Length; i++)
-                if (alf[i] == 1 && count < 2) { ans[i] = count % 2 + end; count++; }
+                if (alf[i] == 1 && count < 2) ans[i] = count++ % 2 + end; 
                 else if (count >= 2) throw new Exception("Ошибка глубины");
                 else if (alf[i] > 1) count_noone++;
+
             if (count == 2 && count_noone > 0) throw new Exception("Ошибка глубины");
+
             if (count == 1)
             {
                 int[] help_int = new int[alf.Length - count];
@@ -26,12 +30,13 @@ namespace Задача_7
                 for (int i = 0; i < alf.Length; i++)
                     if (alf[i] == 1) find++;
                     else help_int[i - find] = alf[i]-1;
-                string[] help_str = Code(help_int, glub - 1, count % 2 + end);
+                string[] help_str = Code(help_int, count % 2 + end);
                 find = 0;
                 for (int i = 0; i < ans.Length; i++)
                     if (alf[i] == 1) find++;
                     else ans[i] = help_str[i - find];
             }
+
             if (count == 0)
             {
                 int[] alf2 = new int[alf.Length / 2];
@@ -41,7 +46,7 @@ namespace Задача_7
                 int num1 = 0;
                 int num2 = 0;
                 bool time = true;
-                for (int i = 2; i <= glub; i++)
+                for (int i = 2; i <= alf.Max(); i++)
                     for (int j = 0; j < alf.Length; j++)
                         if (alf[j] == i)
                         {
@@ -57,8 +62,8 @@ namespace Задача_7
                             }
                             time = !time;
                         }
-                string[] str1 = Code(alf1, glub - 1, "0" + end);
-                string[] str2 = Code(alf2, glub - 1, "1" + end);
+                string[] str1 = Code(alf1, "0" + end);
+                string[] str2 = Code(alf2, "1" + end);
                 for (int i = 0; i < pos1.Length; i++) ans[pos1[i]] = str1[i];
                 for (int i = 0; i < pos2.Length; i++) ans[pos2[i]] = str2[i];
             }
@@ -67,12 +72,13 @@ namespace Задача_7
         // функция для пользования. вызывает предыдущую функцию
         public static string[] ToCode(int[] alf)
         {
-            return Code(alf, alf.Max(), null);
+            return Code(alf, null);
         }
         // сортирует полученный кодирующий алфавит в лексикографическом порядке
         public static string[] LexGraphSort(string[] strs)
         {
             int num = 1, j = num;
+
             while (num<strs.Length)
             {
                 for (int i = j - 1; i >= 0; i--)
