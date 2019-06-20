@@ -79,7 +79,7 @@ namespace Задача_7
         {
             int num = 1, j = num;
 
-            while (num<strs.Length)
+            while (num < strs.Length) 
             {
                 for (int i = j - 1; i >= 0; i--)
                 {
