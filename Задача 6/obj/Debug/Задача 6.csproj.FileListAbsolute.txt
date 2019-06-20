@@ -4,3 +4,4 @@ C:\Users\tim-p\source\repos\Практика\Задача 6\bin\Debug\Задач
 C:\Users\tim-p\source\repos\Практика\Задача 6\obj\Debug\Задача 6.csproj.CoreCompileInputs.cache
 C:\Users\tim-p\source\repos\Практика\Задача 6\obj\Debug\Задача 6.exe
 C:\Users\tim-p\source\repos\Практика\Задача 6\obj\Debug\Задача 6.pdb
+C:\Users\tim-p\source\repos\Практика\Задача 6\obj\Debug\Задача 6.csprojAssemblyReference.cache
