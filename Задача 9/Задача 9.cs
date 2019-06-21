@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Задача_9
 {
@@ -30,8 +26,8 @@ namespace Задача_9
             list.Remove(new CircularListEntry(list.Count));
             list.Show();
             Console.WriteLine("Поиск 6 элемента: ");
-            if (list.KeyFind(5) == null) Console.WriteLine("Такого элемента нет в списке");
-            else list.KeyFind(5).Show();
+            if (list.SearchKey(5) == null) Console.WriteLine("Такого элемента нет в списке");
+            else list.SearchKey(5).Show();
             Console.ReadKey();
         }
     }

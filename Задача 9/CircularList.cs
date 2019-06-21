@@ -43,10 +43,9 @@ namespace Задача_9
                 help.Next = new CircularListEntry();
                 help = help.Next;
             }
-            help = First;
-
+            //help = First;
         }
-        public CircularListEntry KeyFind(int key)
+        public CircularListEntry SearchKey(int key)
         {
             CircularListEntry help = First;
             if (key == help.Key) return help;
@@ -69,7 +68,7 @@ namespace Задача_9
                         if (help.Value == entry.Value)
                         {
                             last.Next = help.Next;
-                            for (int i = help.Key; i < Count; i++)
+                            for (int i = help.Key; i < Count - 1; i++)
                             {
                                 help = help.Next;
                                 help.Key = i;
@@ -85,9 +84,10 @@ namespace Задача_9
                 }
                 else
                 {
-                    this.KeyFind(this.Count - 1).Next = help.Next;
+                    this.SearchKey(this.Count - 1).Next = help.Next;
                     First = help.Next;
-                    for (int i = 0; i < Count; i++)
+                    First.Key = 0;
+                    for (int i = 0; i < Count - 1; i++)
                     {
                         help = help.Next;
                         help.Key = i;
@@ -99,7 +99,7 @@ namespace Задача_9
         {
             if (First != null)
             {
-                CircularListEntry help = this.KeyFind(Count - 1);
+                CircularListEntry help = this.SearchKey(Count - 1);
                 help.Next = entry;
                 entry.Next = First;
                 entry.Key = help.Key + 1;
