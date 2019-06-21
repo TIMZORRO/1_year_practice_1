@@ -112,7 +112,9 @@ namespace Задача_7
             {
                 try
                 {
-                    return Convert.ToInt32(Console.ReadLine());
+                    int a = Convert.ToInt32(Console.ReadLine());
+                    if (a <= 0) throw new Exception();
+                    return a;
                 }
                 catch { Console.WriteLine("Неверный ввод, повторите"); }
             }
