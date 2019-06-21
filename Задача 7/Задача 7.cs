@@ -122,7 +122,7 @@ namespace Задача_7
             Console.WriteLine("Введите длину кодирующего алфавита");
             int count = EnterInt();
             int[] alf = new int[count];
-            string[] code = new string[count];
+
             for (int i = 0; i < count; i++)
             {
                 Console.WriteLine("Введите длину {0} буквы кодирующего алфавиту", i + 1);
