@@ -20,22 +20,23 @@ namespace Задача_12
 
         public static int[] BubbleSort(int[] arr)
         {
+            int[] ans = IntCopy(arr, 0, arr.Length);
             count_changed = 0;
             count_compare = 0;
-            if (arr.Length > 1)
+            if (ans.Length > 1)
             {
-                for (int i=0; i < arr.Length; i++)
+                for (int i=0; i < ans.Length; i++)
                 {
-                    count_compare++;
+                    //count_compare++;
                     //bool found = false;
-                    for (int j = arr.Length - 2; j >= i; j--) 
+                    for (int j = ans.Length - 2; j >= i; j--) 
                     {
-                        count_compare++;
-                        if (arr[j] > arr[j + 1]) 
+                        //count_compare++;
+                        if (ans[j] > ans[j + 1]) 
                         {
-                            int num = arr[j];
-                            arr[j] = arr[j + 1];
-                            arr[j + 1] = num;
+                            int num = ans[j];
+                            ans[j] = ans[j + 1];
+                            ans[j + 1] = num;
                             //found = true;
                             count_changed++;
                         }
@@ -44,29 +45,30 @@ namespace Задача_12
                     //if (!found) break;
                 }
             }
-            return arr;
+            return ans;
         }
 
         public static int[] MergeSort(int[] arr)
         {
-            if (arr.Length > 1)
+            int[] ans = IntCopy(arr,0,arr.Length);
+            if (ans.Length > 1)
             {
-                int index = arr.Length / 2;
-                int[] arr1 = MergeSort(IntCopy(arr, 0, index));
-                int[] arr2 = MergeSort(IntCopy(arr, index, arr.Length - index));
+                int index = ans.Length / 2;
+                int[] arr1 = MergeSort(IntCopy(ans, 0, index));
+                int[] arr2 = MergeSort(IntCopy(ans, index, ans.Length - index));
 
                 int count1 = 0, count2 = 0, i = 0;
                 for (i = 0; count1 != arr1.Length && count2 != arr2.Length; i++) 
                 {
-                    if (arr1[count1] > arr2[count2]) arr[i] = arr2[count2++];
-                    else arr[i] = arr1[count1++];
-                    count_compare += 2;
+                    if (arr1[count1] > arr2[count2]) ans[i] = arr2[count2++];
+                    else ans[i] = arr1[count1++];
+                    count_compare++;
                     count_changed++;
                 }
-                while (count1 != arr1.Length) { arr[i++] = arr1[count1++]; count_compare++; count_changed++; }
-                while (count2 != arr2.Length) { arr[i++] = arr2[count2++]; count_compare++; count_changed++; }
+                while (count1 != arr1.Length) { ans[i++] = arr1[count1++]; count_compare++; count_changed++; }
+                while (count2 != arr2.Length) { ans[i++] = arr2[count2++]; count_compare++; count_changed++; }
             }
-            return arr;
+            return ans;
         }
 
         public static int[] StartMergeSort(int[] arr)
@@ -76,29 +78,37 @@ namespace Задача_12
             return MergeSort(arr);
         }
 
+        public static string ArrToString(int[] arr)
+        {
+            string str = "";
+            for (int i = 0; i < arr.Length; i++)
+            {
+                str += arr[i] + " ";
+            }
+            return str.Trim();
+        }
+
         static void Main(string[] args)
         {
             int[] arr1 = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             int[] arr2 = new int[] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
             int[] arr3 = new int[] { 5, 8, 1, 3, 6, 2, 9, 4, 10, 7 };
-            
-            BubbleSort(arr1);
-            Console.WriteLine("Упорядоченный по возрастанию массив. Сортировка пузырьком. Количество пересылок: {0}. Количество сравнений: {1}", count_changed, count_compare);
-            
-            BubbleSort(arr2);
-            Console.WriteLine("Упорядоченный по убыванию массив. Сортировка пузырьком. Количество пересылок: {0}. Количество сравнений: {1}", count_changed, count_compare);
-            
-            BubbleSort(arr3);
-            Console.WriteLine("Неупорядоченный массив. Сортировка пузырьком. Количество пересылок: {0}. Количество сравнений: {1}", count_changed, count_compare);
-            
-            StartMergeSort(arr1);
-            Console.WriteLine("Упорядоченный по возрастанию массив. Сортировка слияниями. Количество пересылок: {0}. Количество сравнений: {1}", count_changed, count_compare);
-            
-            StartMergeSort(arr2);
-            Console.WriteLine("Упорядоченный по убыванию массив. Сортировка слияниями. Количество пересылок: {0}. Количество сравнений: {1}", count_changed, count_compare);
-            
-            StartMergeSort(arr3);
-            Console.WriteLine("Неупорядоченный массив. Сортировка слияниями. Количество пересылок: {0}. Количество сравнений: {1}", count_changed, count_compare);
+
+            Console.WriteLine($"Упорядоченный по возрастанию массив: {ArrToString(arr1)}");
+            Console.WriteLine($"Упорядоченный по убыванию массив: {ArrToString(arr2)}");
+            Console.WriteLine($"Неупорядоченный массив: {ArrToString(arr3)}");
+
+            Console.WriteLine($"\nУпорядоченный по возрастанию массив. Сортировка пузырьком.\n{ArrToString(BubbleSort(arr1))}\nКоличество пересылок: {count_changed}. Количество сравнений: {count_compare}");
+
+            Console.WriteLine($"\nУпорядоченный по убыванию массив. Сортировка пузырьком.\n{ArrToString(BubbleSort(arr2))}\nКоличество пересылок: {count_changed}. Количество сравнений: {count_compare}");
+
+            Console.WriteLine($"\nНеупорядоченный массив. Сортировка пузырьком.\n{ArrToString(BubbleSort(arr3))}\nКоличество пересылок: {count_changed}. Количество сравнений: {count_compare}");
+
+            Console.WriteLine($"\nУпорядоченный по возрастанию массив. Сортировка слияниями.\n{ArrToString(StartMergeSort(arr1))}\nКоличество пересылок: {count_changed}. Количество сравнений: {count_compare}");
+
+            Console.WriteLine($"\nУпорядоченный по убыванию массив. Сортировка слияниями.\n{ArrToString(StartMergeSort(arr2))}\nКоличество пересылок: {count_changed}. Количество сравнений: {count_compare}");
+
+            Console.WriteLine($"\nНеупорядоченный массив. Сортировка слияниями.\n{ArrToString(StartMergeSort(arr3))}\nКоличество пересылок: {count_changed}. Количество сравнений: {count_compare}");
 
             Console.ReadKey();
         }
