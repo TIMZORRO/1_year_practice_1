@@ -90,7 +90,7 @@ namespace Задача_8
             }
 
             _dict = dict;
-            foreach (PointEntry point in dict.Values) if (point.Degree % 2 == 1) return point;
+            //foreach (PointEntry point in dict.Values) if (point.Degree % 2 == 1) return point;
             return dict[0];
         }
 
