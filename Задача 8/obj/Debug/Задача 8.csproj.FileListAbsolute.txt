@@ -1,0 +1,7 @@
+C:\Users\tim-p\source\repos\Практика\Задача 8\bin\Debug\Задача 8.exe.config
+C:\Users\tim-p\source\repos\Практика\Задача 8\bin\Debug\Задача 8.exe
+C:\Users\tim-p\source\repos\Практика\Задача 8\bin\Debug\Задача 8.pdb
+C:\Users\tim-p\source\repos\Практика\Задача 8\obj\Debug\Задача 8.csprojAssemblyReference.cache
+C:\Users\tim-p\source\repos\Практика\Задача 8\obj\Debug\Задача 8.csproj.CoreCompileInputs.cache
+C:\Users\tim-p\source\repos\Практика\Задача 8\obj\Debug\Задача 8.exe
+C:\Users\tim-p\source\repos\Практика\Задача 8\obj\Debug\Задача 8.pdb
