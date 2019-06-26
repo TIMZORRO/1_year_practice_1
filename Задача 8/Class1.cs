@@ -16,17 +16,21 @@ namespace Задача_8
             }
         }
         public List<PointEntry> Near { get; set; }
+        public int Number { get; set; }
         public PointEntry()
         {
             Near = null;
+            Number = 0;
         }
         public PointEntry(ICollection<PointEntry> c)
         {
             Near = new List<PointEntry>(c);
+            Number = 0;
         }
         public PointEntry(int degree)
         {
             Near = new List<PointEntry>(degree);
+            Number = 0;
         }
         public int CompareTo(PointEntry ve)
         {

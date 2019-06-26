@@ -10,9 +10,6 @@ namespace Задача_8
 {
     class Program
     {
-        public static Dictionary<int, PointEntry> _dict = new Dictionary<int, PointEntry>();
-        public static byte[][] save;
-        public static int u=0;
         public static byte[][] ReadFromFile(string file_name)
         {
             int count1 = 0, count2 = 0;
@@ -36,7 +33,6 @@ namespace Задача_8
             }
 
             byte[][] arr = new byte[count1][];
-            using (FileStream sf = new FileStream(file_name, FileMode.OpenOrCreate)) { }
             using (StreamReader reader = new StreamReader(file_name))
             {
                 try
@@ -77,20 +73,20 @@ namespace Задача_8
             {
                 dict.Add(i, new PointEntry());
                 dict[i].Near = new List<PointEntry>();
+                dict[i].Number = i;
             }
             for (int i = 0; i < arr[0].Length; i++)
             {
                 int[] ver = new int[2];
                 byte count = 0;
                 for (int j = 0; j < arr.Length; j++)
-                    if (arr[j][i] == 1) ver[count++] = j;
+                    if (arr[j][i] == 1)
+                        ver[count++] = j;
 
                 dict[ver[0]].Near.Add(dict[ver[1]]);
                 dict[ver[1]].Near.Add(dict[ver[0]]);
             }
-
-            _dict = dict;
-            //foreach (PointEntry point in dict.Values) if (point.Degree % 2 == 1) return point;
+            
             return dict[0];
         }
 
@@ -104,54 +100,27 @@ namespace Задача_8
             return true;
         }
 
-        public static bool EulerWay(List<int> ways, PointEntry point)
+        public static bool EulerWay(List<int> ways, PointEntry point, byte[][] matr)
         {
-            int count = 0;
-
-            int key = 0;
-            foreach (KeyValuePair<int, PointEntry> pair in _dict)
-                if (pair.Value == point)
-                {
-                    key = pair.Key;
-                    break;
-                }
-
             foreach (PointEntry next in point.Near)
             {
-                int num = 0;
-                foreach (KeyValuePair<int, PointEntry> pair in _dict)
-                    if (pair.Value == next)
+                for (int i = 0; i < matr[0].Length; i++)
+                    if (matr[point.Number][i] == 1 && matr[next.Number][i] == 1 && !ways.Contains(i))
                     {
-                        num = pair.Key;
-                        break;
-                    }
+                        List<int> help = new List<int>(ways);
+                        help.Add(i);
 
-                int way = 0;
-                for (int i = 0; i < save[0].Length; i++) 
-                    if (save[key][i]==1 && save[num][i] == 1)
-                    {
-                        way = i;
-                        break;
+                        if (EulerWay(help, next, matr))
+                        {
+                            Console.Write($"{point.Number + 1} => ");
+                            return true;
+                        }
                     }
-
-                if (!ways.Contains(way))
-                {
-                    List<int> help = new List<int>(ways);
-                    help.Add(way);
-
-                    if (EulerWay(help, next))
-                    {
-                        Console.WriteLine($"{key} => ");
-                        return true;
-                    }
-                    else count++;
-                }
             }
 
-            if (ways.Count == save[0].Length)
+            if (ways.Count == matr[0].Length)
             {
-                Console.WriteLine($"\n{key} => ");
-                u = key;
+                Console.Write($"\n{point.Number + 1} => ");
                 return true;
             }
             else return false;
@@ -161,15 +130,14 @@ namespace Задача_8
         {
             string input_f = "input.txt";
             byte[][] matr = ReadFromFile(input_f);
-            save = matr;
             if (matr.Length != 0)
             {
                 if (EulerParse(matr))
                 {
                     PointEntry first = ToPoint(matr);
                     List<int> ways = new List<int>();
-                    EulerWay(ways, first);
-                    Console.WriteLine($"{u}");
+                    EulerWay(ways, first, matr);
+                    Console.WriteLine("END");
                 }
                 else Console.WriteLine("Введенный граф не является Эйлеровым");
             }
